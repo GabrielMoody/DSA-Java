@@ -2,7 +2,7 @@
  * @author Gabriel Waworundeng
 */
 
-package org.gabriel.DSA;
+package org.gabriel.DSA.DataStructure;
 
 public class Postfix{
   

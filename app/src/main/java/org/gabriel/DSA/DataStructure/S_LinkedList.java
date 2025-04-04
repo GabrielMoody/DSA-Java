@@ -2,7 +2,7 @@
  * @author Gabriel Waworundeng
  */
 
-package org.gabriel.DSA;
+package org.gabriel.DSA.DataStructure;
 
 public class S_LinkedList<T> {
 
@@ -18,18 +18,21 @@ public class S_LinkedList<T> {
 
   private Node<T> head;
 
-  public void insert_last(T value) {
+  public T insert_last(T value) {
     Node<T> curr = head;
     Node<T> newNode = new Node<>(value);
 
     if(curr == null) {
       head = newNode;
+      return head.value;
     } else {
       while(curr.next != null) {
         curr = curr.next;
       }
       curr.next = newNode;
     }
+
+    return curr.value;
   }
 
   public void insert_first(T value) {

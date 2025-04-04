@@ -1,6 +1,6 @@
-package org.gabriel.DSA.tree;
+package org.gabriel.DSA.DataStructure.tree;
 
-import org.gabriel.DSA.Stack;
+import org.gabriel.DSA.DataStructure.Stack;
 
 // Binary Expression Tree
 public class BET {

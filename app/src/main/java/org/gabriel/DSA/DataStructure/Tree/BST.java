@@ -1,6 +1,8 @@
-package org.gabriel.DSA.Tree;
+package org.gabriel.DSA.DataStructure.Tree;
 
+import org.gabriel.DSA.DataStructure.Stack;
 // Binary Serach Tree
+
 public class BST {
   private class Node<E>{
     E value;
@@ -82,11 +84,48 @@ public class BST {
     return root;
   }
 
+  public Node<Integer> preorderToBST(int[] preorder) {
+    Stack<Node<Integer>> s = new Stack<>();
+    Node<Integer> root = new Node<>(preorder[0]);
+    Node<Integer> curr = root;
+    s.push(curr);
+
+    for(int i = 1; i < preorder.length; i++) {
+      Node<Integer> node = new Node<>(preorder[i]);
+
+      if(preorder[i] < s.peek().value) {
+        curr.left = node;
+        s.push(node);
+      } else {
+        Node<Integer> popped = s.pop();
+
+        while(!s.isEmpty() && preorder[i] > s.peek().value) {
+          popped = s.pop();
+        }
+
+        popped.right = node;
+        s.push(node);
+      }
+
+      curr = node;
+    }
+
+    return root;
+  }
+
   public void inOrder(Node<Integer> root) {
     if(root != null) {
       inOrder(root.left);
       System.out.printf("%s ", root.value);
       inOrder(root.right);
+    }
+  }
+
+  public void preOrder(Node<Integer> root) {
+    if(root != null) {
+      System.out.printf("%s ", root.value);
+      preOrder(root.left);
+      preOrder(root.right);
     }
   }
 
@@ -102,11 +141,14 @@ public class BST {
     tree.insert(41, tree.root);
     tree.inOrder(tree.root);
 
-    tree.delete(20, tree.root);
+    // tree.delete(20, tree.root);
 
     System.out.println();
     
-    tree.inOrder(tree.root);
-    System.out.println(tree.root.value);
+    tree.preOrder(tree.root);
+
+    System.out.println("\nConstruct a BST from preorder : ");
+    int[] preorder = {20, 15, 10, 12, 17, 19, 40, 41};
+    tree.preOrder(tree.preorderToBST(preorder));
   }
 }
